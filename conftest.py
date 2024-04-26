@@ -7,7 +7,6 @@ def collector():
     return collector
 
 @pytest.fixture
-def collection():
-    collection = BooksCollector()
-    collection.books_genre = {'Гарри Поттер':'Фантастика', 'Сияние':'Ужасы', 'Девушка с татуировкой дракона':'Детективы','Белоснежка':'Мультфильмы', '12 стульев':'Комедии' }
-    return collection
+def collection(collector):
+    collector.books_genre = {'Гарри Поттер':'Фантастика', 'Сияние':'Ужасы', 'Девушка с татуировкой дракона':'Детективы','Белоснежка':'Мультфильмы', '12 стульев':'Комедии' }
+    return collector

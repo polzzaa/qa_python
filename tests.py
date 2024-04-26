@@ -18,14 +18,18 @@ class TestBooksCollector:
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
         assert collector.get_book_genre('Гарри Поттер') == 'Фантастика'
 
-    def test_get_book_genre_by_name(self, collection):
-        assert collection.get_book_genre('Белоснежка') == 'Мультфильмы'
+    def test_get_book_genre_by_name(self, collector):
+        collector.add_new_book('Игра престолов')
+        collector.set_book_genre('Игра престолов', 'Фантастика')
+        assert collector.get_book_genre('Игра престолов') == 'Фантастика'
 
-    def test_get_books_with_specific_genre_list_of_books(self, collection):
-        assert collection.get_books_with_specific_genre('Фантастика') == ['Гарри Поттер']
+    def test_get_books_with_specific_genre_list_of_books(self, collector):
+        collector.add_new_book('Игра престолов')
+        collector.set_book_genre('Игра престолов', 'Фантастика')
+        assert collector.get_books_with_specific_genre('Фантастика') == ['Игра престолов']
 
-    def test_get_books_genre(self, collection):
-        assert len(collection.get_books_genre()) == 5
+    def test_get_books_genre(self, collector):
+        assert collector.get_books_genre() == {}
 
     def test_get_books_for_children(self, collection):
         assert collection.get_books_with_specific_genre('Ужасы') and collection.get_books_with_specific_genre('Детективы') not in collection.get_books_for_children()
